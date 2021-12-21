@@ -47,7 +47,6 @@ do {
     default ->
       System.out.printf("Sorry, I don't understand you, please try again. %n");
 
-
   }
 }
 while(!exit);
