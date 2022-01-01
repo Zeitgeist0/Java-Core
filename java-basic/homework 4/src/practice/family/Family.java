@@ -17,8 +17,12 @@ public class Family {
     father.setFamily(this);
   }
 
+  public Family() {
+
+  }
+
   public void addChild (Human child) {
-    this.children = Arrays.copyOf(children, children.length + 1);
+    this.children = Arrays.copyOf(this.children, this.children.length + 1);
     this.children[this.children.length - 1] = child;
     child.setFamily(this);
   }
@@ -30,6 +34,7 @@ public class Family {
     Human[] proxyArray = new Human[this.children.length - 1];
     for (int j = 0 , k = 0; j < this.children.length; j++) {
       if(j == removeIndex) {
+        this.children[j].setFamily(null);
         continue;
       }
       proxyArray[k++] = this.children[j];
@@ -41,7 +46,9 @@ public void countFamily () {
   System.out.printf("This family has 2 parents, and %d children %n" , children.length );
 }
 
-
+public boolean hasPet () {
+  return this.pet != null;
+}
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -57,9 +64,17 @@ public void countFamily () {
 
   @Override
 public String toString() {
-  return String.format("Family{%s, %s, %s, %s}",
-    mother.toString(), father.toString(), Arrays.toString(children), pet.toString());
+    if(hasPet()) {
+      return String.format("Family{%s, %s, %s, %s}",
+        mother.toString(), father.toString(), Arrays.toString(children), pet.toString());
+    }
+
+  return String.format("Family{%s, %s, %s}",
+    mother.toString(), father.toString(), Arrays.toString(children));
+
+
 }
+
   public Human getMother() {
     return mother;
   }

@@ -21,20 +21,33 @@ private String[][] schedule;
     this.schedule = schedule;
   }
 
-  public Human(String name, String surname, int year) {
+  public Human(String name, String surname, int year, int iq) {
     this.name = name;
     this.surname = surname;
     this.year = year;
+    this.iq = iq;
   }
 
   public  Human () {}
 
+  public boolean hasFamily () {
+    return this.family != null;
+  }
 
   public void greetPet () {
+    if (!hasFamily() || !family.hasPet()) {
+      System.out.println("I don't have a pet");
+      return;
+    }
+
   System.out.printf("Hi %s%n", family.getPet().getNickname());
 }
 
 public void describePet () {
+  if (!hasFamily() || !family.hasPet()) {
+    System.out.println("I don't have a pet");
+    return;
+  }
   String howTricky = family.getPet().getTrickLevel() > 50 ?  "very tricky" : "not very tricky";
   System.out.printf("I have a %s, he is %d years old, and he is %s%n ", family.getPet().getSpecies(),
     family.getPet().getAge(), howTricky );

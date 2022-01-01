@@ -18,11 +18,15 @@ public class Pet {
     this.trickLevel = trickLevel;
     this.habits = habits;
   }
-  public Pet (String species, String nickname) {
+
+  public Pet(String species, String nickname, int age, int trickLevel) {
     this.species = species;
     this.nickname = nickname;
+    this.age = age;
+    this.trickLevel = trickLevel;
   }
- public Pet () {}
+
+  public Pet () {}
 
   public void eat() {
     System.out.printf("I'm eating %n");
