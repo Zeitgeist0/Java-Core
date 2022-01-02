@@ -5,13 +5,13 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Pet {
-  private String species;
+  private Species species;
   private String nickname;
   private int age;
   private int trickLevel;
   private String[] habits;
 
-  public Pet(String species, String nickname, int age, int trickLevel, String[] habits) {
+  public Pet(Species species, String nickname, int age, int trickLevel, String[] habits) {
     this.species = species;
     this.nickname = nickname;
     this.age = age;
@@ -19,7 +19,7 @@ public class Pet {
     this.habits = habits;
   }
 
-  public Pet(String species, String nickname, int age, int trickLevel) {
+  public Pet(Species species, String nickname, int age, int trickLevel) {
     this.species = species;
     this.nickname = nickname;
     this.age = age;
@@ -56,12 +56,16 @@ public class Pet {
     return String.format("%s{nickname='%s' , age=%d, trickLevel=%d, habits=[%s]} %n ",
       species, nickname,age,trickLevel, Arrays.toString(habits));
   }
-
-  public String getSpecies() {
+  @Override
+  protected void finalize() throws Throwable {
+    System.out.println(this.toString());
+    super.finalize();
+  }
+  public Species getSpecies() {
     return species;
   }
 
-  public void setSpecies(String species) {
+  public void setSpecies(Species species) {
     this.species = species;
   }
 

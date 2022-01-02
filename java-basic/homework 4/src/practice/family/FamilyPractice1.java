@@ -1,25 +1,25 @@
 package practice.family;
 
-public class FamilyPractice {
+public class FamilyPractice1 {
   public static void main(String[] args) {
-    String[][] schedule = generateSchedule();
-    Pet pet1 = new Pet("Dog", "Doge", 5, 75);
-    Pet pet2 = new Pet("Cat" , "Mewtwo", 2, 34);
-    Human human1 = new Human("John","Doe", 1997 , 105, schedule);
-    Human human2 = new Human("Mary", "Wilson", 1996, 104 );
-    Human human3 = new Human("Anthony", "Spencer", 1950, 145);
-    Human human4 = new Human("Lara", "Mayer", 1951, 123, schedule);
-    Human human5 = new Human("Stephen", "King", 2005, 76);
-    Human human6 = new Human("Melissa", "Connor", 2020, 78, schedule);
-    Human human7 = new Human("Melissa", "Connor", 2020, 78);
-    Family family1 = new Family(human2, human1);
-    Family family2 = new Family(human6,human5);
-    family1.addChild(human3);
-    family1.addChild(human4);
-    family1.deleteChild(0);
-    family2.addChild(human3);
-    family1.setPet(pet1);
-    family2.addChild(human7);
+//    String[][] schedule = generateSchedule();
+//    Pet pet1 = new Pet("Dog", "Doge", 5, 75);
+//    Pet pet2 = new Pet("Cat" , "Mewtwo", 2, 34);
+//    Human human1 = new Human("John","Doe", 1997 , 105, schedule);
+//    Human human2 = new Human("Mary", "Wilson", 1996, 104 );
+//    Human human3 = new Human("Anthony", "Spencer", 1950, 145);
+//    Human human4 = new Human("Lara", "Mayer", 1951, 123, schedule);
+//    Human human5 = new Human("Stephen", "King", 2005, 76);
+//    Human human6 = new Human("Melissa", "Connor", 2020, 78, schedule);
+//    Human human7 = new Human("Melissa", "Connor", 2020, 78);
+//    Family family1 = new Family(human2, human1);
+//    Family family2 = new Family(human6,human5);
+//    family1.addChild(human3);
+//    family1.addChild(human4);
+//    family1.deleteChild(0);
+//    family2.addChild(human3);
+//    family1.setPet(pet1);
+//    family2.addChild(human7);
 //    System.out.println(human1.toString());
 //    System.out.println(human2.toString());
 //    System.out.println(human4.toString());

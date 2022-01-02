@@ -9,8 +9,6 @@ private String surname;
 private int year;
 private int iq;
 private Family family;
-
-
 private String[][] schedule;
 
   public Human(String name, String surname, int year, int iq, String[][] schedule) {
@@ -49,7 +47,7 @@ public void describePet () {
     return;
   }
   String howTricky = family.getPet().getTrickLevel() > 50 ?  "very tricky" : "not very tricky";
-  System.out.printf("I have a %s, he is %d years old, and he is %s%n ", family.getPet().getSpecies(),
+  System.out.printf("I have a %s, he is %d years old, and he is %s%n ", family.getPet().getSpecies().toString().toLowerCase(),
     family.getPet().getAge(), howTricky );
 }
 
@@ -70,6 +68,12 @@ public void describePet () {
   public String toString() {
     return String.format("Human{name='%s', surname='%s', year=%d, iq=%d, schedule='%s'} %n ",
       name, surname,year,iq, Arrays.deepToString(schedule));
+  }
+
+  @Override
+  protected void finalize() throws Throwable {
+    System.out.println(this.toString());
+    super.finalize();
   }
 
   public String getName() {

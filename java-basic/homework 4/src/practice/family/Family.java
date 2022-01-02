@@ -2,6 +2,7 @@ package practice.family;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 public class Family {
   private Human mother;
@@ -42,13 +43,33 @@ public class Family {
     this.children = proxyArray;
     return true;
   }
-public void countFamily () {
+
+  public boolean deleteChild (Human human) {
+    if (!Arrays.asList(this.children).contains(human)) {
+      return false;
+    }
+    human.setFamily(null);
+    Human [] proxyArray = new Human[this.children.length - 1];
+    for (int i = 0 , k = 0; i < this.children.length; i++) {
+      if (human.equals(this.children[i])) {
+        continue;
+      }
+      proxyArray[k++] = this.children[i];
+    }
+    this.children = proxyArray;
+    return true;
+  }
+public int countFamily () {
   System.out.printf("This family has 2 parents, and %d children %n" , children.length );
+  return children.length;
 }
 
 public boolean hasPet () {
   return this.pet != null;
 }
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -75,6 +96,11 @@ public String toString() {
 
 }
 
+  @Override
+  protected void finalize() throws Throwable {
+    System.out.println(this.toString());
+    super.finalize();
+  }
   public Human getMother() {
     return mother;
   }
