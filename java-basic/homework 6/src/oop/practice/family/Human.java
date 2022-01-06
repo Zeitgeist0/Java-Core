@@ -1,6 +1,7 @@
 package oop.practice.family;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Human {
@@ -9,9 +10,9 @@ private String surname;
 private int year;
 private int iq;
 private Family family;
-private String[][] schedule;
+private HashMap<String, String> schedule;
 
-  public Human(String name, String surname, int year, int iq, String[][] schedule) {
+  public Human(String name, String surname, int year, int iq, HashMap<String, String> schedule) {
     this.name = name;
     this.surname = surname;
     this.year = year;
@@ -32,23 +33,24 @@ private String[][] schedule;
     return this.family != null;
   }
 
-  public void greetPet () {
+
+  public void greetPet (Pet pet) {
     if (!hasFamily() || !family.hasPet()) {
       System.out.println("I don't have a pet");
       return;
     }
 
-  System.out.printf("Hi %s%n", family.getPet().getNickname());
+  System.out.printf("Hi %s%n", this.getFamily().findPet(pet).getNickname());
 }
 
-public void describePet () {
+public void describePet (Pet pet) {
   if (!hasFamily() || !family.hasPet()) {
     System.out.println("I don't have a pet");
     return;
   }
-  String howTricky = family.getPet().getTrickLevel() > 50 ?  "very tricky" : "not very tricky";
-  System.out.printf("I have a %s, he is %d years old, and he is %s%n ", family.getPet().getSpecies().toString().toLowerCase(),
-    family.getPet().getAge(), howTricky );
+  String howTricky = this.getFamily().findPet(pet).getTrickLevel() > 50 ?  "very tricky" : "not very tricky";
+  System.out.printf("I have a %s, he is %d years old, and he is %s%n ", this.getFamily().findPet(pet).getSpecies().getName().toLowerCase(),
+    this.getFamily().findPet(pet).getAge(), howTricky );
 }
 
   @Override
@@ -67,7 +69,7 @@ public void describePet () {
   @Override
   public String toString() {
     return String.format("Human{name='%s', surname='%s', year=%d, iq=%d, schedule='%s'} %n ",
-      name, surname,year,iq, Arrays.deepToString(schedule));
+      name, surname,year,iq, schedule);
   }
 
   @Override
@@ -109,12 +111,11 @@ public void describePet () {
   }
 
 
-
-  public String[][] getSchedule() {
+  public HashMap<String, String> getSchedule() {
     return schedule;
   }
 
-  public void setSchedule(String[][] schedule) {
+  public void setSchedule(HashMap<String, String> schedule) {
     this.schedule = schedule;
   }
 

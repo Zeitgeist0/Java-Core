@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HumanTest {
@@ -22,12 +24,10 @@ class HumanTest {
 }
   @Test
   public void toStringWithSchedule() {
-    String[][] schedule = new String[2][2];
-    schedule[0][0] = DayOfWeek.FRIDAY.getName();
-    schedule[0][1] = Tasks.GO_TO_CINEMA.getName();
-    schedule[1][0] = DayOfWeek.MONDAY.getName();
-    schedule[1][1] = Tasks.WORKOUT.getName();
+    HashMap<String, String> schedule = new HashMap<>();
+    schedule.put(DayOfWeek.FRIDAY.getName(), Tasks.GO_TO_CINEMA.getName());
+    schedule.put( DayOfWeek.MONDAY.getName(),Tasks.WORKOUT.getName() );
     human.setSchedule(schedule);
-    assertEquals("Human{name='John', surname='Doe', year=1997, iq=105, schedule='[[Friday, Go to the cinema], [Monday, Workout]]'}", human.toString().trim());
+    assertEquals("Human{name='John', surname='Doe', year=1997, iq=105, schedule='{Monday=Workout, Friday=Go to the cinema}'}", human.toString().trim());
   }
 }

@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FamilyTest {
@@ -43,15 +45,15 @@ class FamilyTest {
 
   @Test
   public void anElementIsAddedToTheChildrensArray () {
-    int initialChilds = family.getChildren().length;
+    int initialChilds = family.getChildren().size();
     family.addChild(man2);
-    assertEquals(initialChilds + 1, family.getChildren().length );
+    assertEquals(initialChilds + 1, family.getChildren().size() );
   }
   @Test
   public void theCorrectChildIsAddedToTheArray () {
     family.addChild(man2);
-    Human[] childsArray = family.getChildren();
-    assertEquals(man2, childsArray[family.getChildren().length - 1]);
+    ArrayList<Human> childsArray = family.getChildren();
+    assertEquals(man2, childsArray.get(family.getChildren().size() - 1));
   }
 
 
@@ -61,8 +63,8 @@ class FamilyTest {
     family.addChild(man2);
     family.addChild(woman2);
   assertTrue(family.deleteChild(validRemoveIndex));
-    Human[] childsArray = family.getChildren();
-  assertNotEquals(woman2, childsArray[validRemoveIndex - 1]);
+    ArrayList<Human> childsArray = family.getChildren();
+  assertNotEquals(woman2, childsArray.get(validRemoveIndex - 1));
 
 }
   @Test
@@ -71,37 +73,37 @@ class FamilyTest {
     int actualChildIndex = 1;
     family.addChild(man2);
     family.addChild(woman2);
-    int initialChildsLength = family.getChildren().length;
+    int initialChildsLength = family.getChildren().size();
     assertFalse(family.deleteChild(invalidRemoveIndex));
-    Human[] childsArray = family.getChildren();
-    int finalChildsLength = family.getChildren().length;
-    assertEquals(woman2, childsArray[actualChildIndex]);
+    ArrayList<Human> childsArray = family.getChildren();
+    int finalChildsLength = family.getChildren().size();
+    assertEquals(woman2, childsArray.get(actualChildIndex));
     assertEquals(initialChildsLength, finalChildsLength);
   }
   @Test
   public void childIsDeletedWhenPassingExistingChild() {
     family.addChild(man2);
     family.addChild(woman2);
-    int initialChildsLength = family.getChildren().length;
+    int initialChildsLength = family.getChildren().size();
     assertTrue(family.deleteChild(woman2));
-    int finalChildsLength = family.getChildren().length;
+    int finalChildsLength = family.getChildren().size();
     assertNotEquals(initialChildsLength, finalChildsLength);
   }
   @Test
   public void childIsNotDeletedWhenPassingNotExistingChild() {
     family.addChild(man2);
     family.addChild(woman2);
-    int initialChildsLength = family.getChildren().length;
+    int initialChildsLength = family.getChildren().size();
     assertFalse(family.deleteChild(man1));
-    int finalChildsLength = family.getChildren().length;
+    int finalChildsLength = family.getChildren().size();
     assertEquals(initialChildsLength, finalChildsLength);
   }
   @Test
   public void childsAreProperlyCounted() {
-    int initialChildsLength = family.getChildren().length;
+    int initialChildsLength = family.getChildren().size();
     family.addChild(man2);
     family.addChild(woman2);
-    int finalChildsLength = family.getChildren().length;
+    int finalChildsLength = family.getChildren().size();
     assertEquals(finalChildsLength, family.countFamily());
     assertEquals(initialChildsLength + 2, family.countFamily());
     assertNotEquals(initialChildsLength, family.countFamily());

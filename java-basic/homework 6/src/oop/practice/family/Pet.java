@@ -1,7 +1,8 @@
 package oop.practice.family;
 
 
-import java.util.Arrays;
+
+import java.util.HashSet;
 import java.util.Objects;
 
 public abstract class Pet  {
@@ -9,10 +10,22 @@ public abstract class Pet  {
   private String nickname;
   private int age;
   private int trickLevel;
-  private String[] habits;
+  private HashSet <String> habits;
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Pet pet = (Pet) o;
+    return age == pet.age && trickLevel == pet.trickLevel && species == pet.species && nickname.equals(pet.nickname) && Objects.equals(habits, pet.habits);
+  }
 
-  public Pet(String nickname, int age, int trickLevel, String[] habits) {
+  @Override
+  public int hashCode() {
+    return Objects.hash(species, nickname, age, trickLevel, habits);
+  }
+
+  public Pet(String nickname, int age, int trickLevel, HashSet <String> habits) {
     this.species = Species.UNKNOWN;
     this.nickname = nickname;
     this.age = age;
@@ -37,22 +50,9 @@ public abstract class Pet  {
 
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Pet pet = (Pet) o;
-    return species.equals(pet.species) && nickname.equals(pet.nickname);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(species, nickname);
-  }
-
-  @Override
   public String toString() {
     return String.format("%s{nickname='%s' , age=%d, trickLevel=%d, habits=[%s]} %n ",
-      species, nickname,age,trickLevel, Arrays.toString(habits));
+      species, nickname,age,trickLevel, habits);
   }
   @Override
   protected void finalize() throws Throwable {
@@ -91,11 +91,11 @@ public abstract class Pet  {
     this.trickLevel = trickLevel;
   }
 
-  public String[] getHabits() {
+  public HashSet<String> getHabits() {
     return habits;
   }
 
-  public void setHabits(String[] habits) {
+  public void setHabits(HashSet<String> habits) {
     this.habits = habits;
   }
 }

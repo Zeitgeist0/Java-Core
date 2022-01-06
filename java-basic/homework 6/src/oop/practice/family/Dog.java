@@ -1,11 +1,12 @@
 package oop.practice.family;
 
-import java.util.Arrays;
+
+import java.util.HashSet;
 
 public class Dog extends Pet implements Foul{
 private Species species;
 
-  public Dog(String nickname, int age, int trickLevel, String[] habits) {
+  public Dog(String nickname, int age, int trickLevel, HashSet <String> habits) {
     super(nickname, age, trickLevel, habits);
     this.species = Species.DOG;
   }
@@ -32,7 +33,7 @@ private Species species;
   @Override
   public String toString() {
     return String.format("%s{nickname='%s' , age=%d, trickLevel=%d, habits=[%s]} %n ",
-      species, this.getNickname(),this.getAge(),this.getTrickLevel(),  Arrays.toString(this.getHabits()));
+      species, this.getNickname(),this.getAge(),this.getTrickLevel(),  this.getHabits());
   }
   @Override
   public Species getSpecies() {
