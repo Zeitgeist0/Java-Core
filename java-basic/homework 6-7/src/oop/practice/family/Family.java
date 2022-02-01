@@ -3,18 +3,20 @@ package oop.practice.family;
 import java.util.ArrayList;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 
 public class Family {
   private Human mother;
   private Human father;
-  private ArrayList<Human> children;
+  private List<Human> children;
   private HashSet<Pet> pet;
 
   public Family(Human mother, Human father) {
     this.mother = mother;
     this.father = father;
     this.children = new ArrayList<>();
+    this.pet = new HashSet<>();
     mother.setFamily(this);
     father.setFamily(this);
   }
@@ -44,7 +46,9 @@ public class Family {
   System.out.printf("This family has 2 parents, and %d children %n" ,  this.children.size());
   return this.children.size();
 }
-
+public void addPet (Pet newPet) {
+    pet.add(newPet);
+}
   public boolean hasPet () {
   return this.pet != null;
 }
@@ -52,17 +56,19 @@ public class Family {
   public Pet findPet (Pet pet) {
     return getPet().stream().filter(pet::equals).findAny().orElse(null);
   }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Family family = (Family) o;
-    return mother.equals(family.mother) && father.equals(family.father) && Objects.equals(children, family.children) && Objects.equals(pet, family.pet);
+    return mother.equals(family.mother) && father.equals(family.father);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mother, father, children, pet);
+    return Objects.hash(mother, father);
   }
 
   @Override
@@ -99,11 +105,11 @@ public String toString() {
     this.father = father;
   }
 
-  public ArrayList<Human> getChildren() {
+  public List<Human> getChildren() {
     return children;
   }
 
-  public void setChildren(ArrayList<Human> children) {
+  public void setChildren(List<Human> children) {
     this.children = children;
   }
 

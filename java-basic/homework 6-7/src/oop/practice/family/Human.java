@@ -1,13 +1,14 @@
 package oop.practice.family;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class Human {
 private String name;
 private String surname;
-private int year;
+private int year = Calendar.getInstance().get(Calendar.YEAR);
 private int iq;
 private Family family;
 private HashMap<String, String> schedule;
@@ -25,6 +26,11 @@ private HashMap<String, String> schedule;
     this.surname = surname;
     this.year = year;
     this.iq = iq;
+  }
+
+  public Human(String name, String surname) {
+    this.name = name;
+    this.surname = surname;
   }
 
   public  Human () {}

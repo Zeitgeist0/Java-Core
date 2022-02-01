@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,7 +53,7 @@ class FamilyTest {
   @Test
   public void theCorrectChildIsAddedToTheArray () {
     family.addChild(man2);
-    ArrayList<Human> childsArray = family.getChildren();
+    List<Human> childsArray = family.getChildren();
     assertEquals(man2, childsArray.get(family.getChildren().size() - 1));
   }
 
@@ -63,7 +64,7 @@ class FamilyTest {
     family.addChild(man2);
     family.addChild(woman2);
   assertTrue(family.deleteChild(validRemoveIndex));
-    ArrayList<Human> childsArray = family.getChildren();
+  List<Human> childsArray = family.getChildren();
   assertNotEquals(woman2, childsArray.get(validRemoveIndex - 1));
 
 }
@@ -75,7 +76,7 @@ class FamilyTest {
     family.addChild(woman2);
     int initialChildsLength = family.getChildren().size();
     assertFalse(family.deleteChild(invalidRemoveIndex));
-    ArrayList<Human> childsArray = family.getChildren();
+    List<Human> childsArray = family.getChildren();
     int finalChildsLength = family.getChildren().size();
     assertEquals(woman2, childsArray.get(actualChildIndex));
     assertEquals(initialChildsLength, finalChildsLength);

@@ -10,7 +10,9 @@ public final class Man extends Human{
   public Man(String name, String surname, int year, int iq) {
     super(name, surname, year, iq);
   }
-
+  public Man(String name, String surname) {
+    super(name, surname);
+  }
   public Man() {
   }
 
