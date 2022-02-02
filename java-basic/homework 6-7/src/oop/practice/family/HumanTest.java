@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,7 +13,7 @@ class HumanTest {
   private Human human;
   @BeforeEach
   void setUp() {
-     human = new Human("John", "Doe", 1997, 105);
+     human = new Human("John", "Doe", "1997", 105);
   }
   @AfterEach
   void tearDown () {
@@ -24,7 +25,7 @@ class HumanTest {
 }
   @Test
   public void toStringWithSchedule() {
-    HashMap<String, String> schedule = new HashMap<>();
+    Map<String, String> schedule = new HashMap<>();
     schedule.put(DayOfWeek.FRIDAY.getName(), Tasks.GO_TO_CINEMA.getName());
     schedule.put( DayOfWeek.MONDAY.getName(),Tasks.WORKOUT.getName() );
     human.setSchedule(schedule);

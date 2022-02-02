@@ -74,11 +74,11 @@ public void addPet (Pet newPet) {
   @Override
 public String toString() {
     if(hasPet()) {
-      return String.format("Family{%s, %s, %s, %s}",
+      return String.format("Family{%s, %s, %s, %s} %n",
         mother.toString(), father.toString(), children, pet.toString());
     }
 
-  return String.format("Family{%s, %s, %s}",
+  return String.format("Family{%s, %s, %s} %n" ,
     mother.toString(), father.toString(), children);
 
 

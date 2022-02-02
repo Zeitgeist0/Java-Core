@@ -7,7 +7,7 @@ public class FamilyApp {
   public static Man man4 = new Man("Brock", "Rock");
   public static  Woman woman1 = new Woman("Alice", "Jones");
   public static  Woman woman2 = new Woman("Elisabeth", "Taylor");
-  public static  Woman woman3 = new Woman("Emma", "Philips", 2000, 45);
+  public static  Woman woman3 = new Woman("Emma", "Philips", "2000", 45);
   public static  Woman woman4 = new Woman("Tina", "Turner");
  public static Family family1 = new Family(woman1, man1);
   public static Family family2 = new Family(woman4, man4);

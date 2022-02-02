@@ -22,7 +22,7 @@ public  boolean familiesExist () {
       System.out.println("No families to display");
     }
     families.forEach(family -> {
-      System.out.printf("{Family index %d : {%s}}, ", families.indexOf(family) , family.toString());
+      System.out.printf("Family index %d : {%s}, ", families.indexOf(family) , family.toString());
     });
   }
 public  void displayAllFamilies() {
@@ -101,7 +101,7 @@ public Family adoptChild (Family family, Human human) {
 public void deleteAllChildrenOlderThan (int age) {
   familyDao.getAllFamilies().stream().forEach(family -> {
     List<Human> youngChildren = family.getChildren().stream().
-        filter(children -> (Calendar.getInstance().get(Calendar.YEAR) - children.getYear()) > age).collect(Collectors.toList());
+        filter(children -> (Calendar.getInstance().get(Calendar.YEAR) - children.getBirthDate()) > age).collect(Collectors.toList());
     youngChildren.stream().forEach(child -> family.deleteChild(child));
     });
 }
