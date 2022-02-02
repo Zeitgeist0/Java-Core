@@ -13,7 +13,10 @@ public class FamilyApp {
   public static Family family2 = new Family(woman4, man4);
 
   public static void main(String[] args) {
-    FamilyController familyController = new FamilyController();
+//
+    FamilyDao familyDao = FamilyCollection.instanceOf();
+    FamilyService familyService = new FamilyService(familyDao);
+    FamilyController familyController = new FamilyController(familyService);
     familyController.saveFamily(family1);
 familyController.createNewFamily(man2, woman2);
 
@@ -21,18 +24,18 @@ familyController.createNewFamily(man2, woman2);
    family1.addChild(woman3);
    familyController.bornChild(family2, "ZZZZZZ", "XXXXXX");
    familyController.bornChild(family1, "ALFRED", "MONICA");
-//   familyController.getFamiliesBiggerThan(3);
-//    familyController.getFamiliesLessThan(3);
-//   familyController.displayAllFamilies();
+   familyController.getFamiliesBiggerThan(3);
+    familyController.getFamiliesLessThan(3);
+   familyController.displayAllFamilies();
     familyController.deleteAllChildrenOlderThan(18);
 
     familyController.adoptChild(family1, man3);
-//    familyController.displayAllFamilies();
+    familyController.displayAllFamilies();
     RobotCat robotCat = new RobotCat("Tiger", 143, 22222);
     familyController.addPet(0, robotCat);
     System.out.println(familyController.getPets(0));
-//    System.out.println(familyController.getFamilyByIndex(2));
-//    System.out.println(familyController.countFamiliesWithMemberNumber(4));
+    System.out.println(familyController.getFamilyByIndex(2));
+    System.out.println(familyController.countFamiliesWithMemberNumber(4));
   }
 
 

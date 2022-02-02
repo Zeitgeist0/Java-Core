@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FamilyCollection implements FamilyDao{
+  private static final FamilyCollection familyCollection = new FamilyCollection();
+  private final List<Family> families = new ArrayList<>();
 
-private List<Family> families = new ArrayList<>();
-
-
+  private FamilyCollection() {
+  }
+  public static FamilyCollection instanceOf() {
+    return familyCollection;
+  }
 
   @Override
   public List<Family> getAllFamilies() {
@@ -28,7 +32,6 @@ private List<Family> families = new ArrayList<>();
     return true;
 
   }
-
   @Override
   public boolean deleteFamily(Family family) {
     return families.remove(family);
