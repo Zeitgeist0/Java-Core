@@ -21,13 +21,15 @@ public  boolean familiesExist () {
     if(!familiesExist()) {
       System.out.println("No families to display");
     }
-    for (int i = 0; i < families.size(); i++) {
-      System.out.printf("{Family index %d : {%s}}, ", i , families.get(i).toString());
-    }
+    families.forEach(family -> {
+      System.out.printf("{Family index %d : {%s}}, ", families.indexOf(family) , family.toString());
+    });
   }
 public  void displayAllFamilies() {
    displayFamilies(familyDao.getAllFamilies());
   }
+
+
   public Family getFamilyByIndex(int index) {
     return familyDao.getFamilyByIndex(index);
   }
