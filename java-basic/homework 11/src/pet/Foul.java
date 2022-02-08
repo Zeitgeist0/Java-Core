@@ -1,5 +1,5 @@
 package pet;
 
 public interface Foul {
-  void foul ();
+  void foul();
 }

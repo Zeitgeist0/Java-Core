@@ -24,15 +24,18 @@ public final class Woman extends Human {
   public Woman(String name, String surname, long birthDate) {
     super(name, surname, birthDate);
   }
+
   public Woman(String name, String surname) {
     super(name, surname);
   }
+
   public void run() {
     System.out.println("I need to speed up");
   }
+
   @Override
-  public void greetPet (Pet pet) {
-    if(isMyPet(pet)) {
+  public void greetPet(Pet pet) {
+    if (isMyPet(pet)) {
       System.out.printf("Hi %s, i really missed you! %n", this.getFamily().findPet(pet).getNickname());
     }
 

@@ -13,12 +13,12 @@ import java.util.Objects;
 import java.util.TimeZone;
 
 public class Human {
-private String name;
-private String surname;
-private long birthDate;
-private int iq;
-private Family family;
-private Map<DayOfWeek, String> schedule;
+  private String name;
+  private String surname;
+  private long birthDate;
+  private int iq;
+  private Family family;
+  private Map<DayOfWeek, String> schedule;
 
   public Human() {
   }
@@ -47,6 +47,7 @@ private Map<DayOfWeek, String> schedule;
     this.birthDate = StringDateToLongDate(birthDate);
     this.iq = iq;
   }
+
   public Human(String name, String surname, String birthDate) {
     this.name = name;
     this.surname = surname;
@@ -58,6 +59,7 @@ private Map<DayOfWeek, String> schedule;
     this.surname = surname;
     this.birthDate = birthDate;
   }
+
   public Human(String name, String surname) {
     this.name = name;
     this.surname = surname;
@@ -65,7 +67,7 @@ private Map<DayOfWeek, String> schedule;
   }
 
 
-  public boolean hasFamily () {
+  public boolean hasFamily() {
     return this.family != null;
   }
 
@@ -84,20 +86,21 @@ private Map<DayOfWeek, String> schedule;
       " days";
   }
 
-public String dateOfBirthToString() {
-  LocalDate localDate;
- StringBuilder stringBuilder = new StringBuilder();
-   localDate = LocalDate.ofInstant(Instant.ofEpochMilli(birthDate), TimeZone.getDefault().toZoneId());
-  stringBuilder.append("'");
-  stringBuilder.append(localDate.getDayOfMonth());
-  stringBuilder.append("/");
-  stringBuilder.append(localDate.getMonthValue());
-  stringBuilder.append("/");
-  stringBuilder.append(localDate.getYear());
-  stringBuilder.append('\'');
-  return  stringBuilder.toString();
+  public String dateOfBirthToString() {
+    LocalDate localDate;
+    StringBuilder stringBuilder = new StringBuilder();
+    localDate = LocalDate.ofInstant(Instant.ofEpochMilli(birthDate), TimeZone.getDefault().toZoneId());
+    stringBuilder.append("'");
+    stringBuilder.append(localDate.getDayOfMonth());
+    stringBuilder.append("/");
+    stringBuilder.append(localDate.getMonthValue());
+    stringBuilder.append("/");
+    stringBuilder.append(localDate.getYear());
+    stringBuilder.append('\'');
+    return stringBuilder.toString();
 
-}
+  }
+
   private long StringDateToLongDate(String dateString) {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     try {
@@ -107,34 +110,33 @@ public String dateOfBirthToString() {
     }
   }
 
-  public boolean isMyPet (Pet pet) {
+  public boolean isMyPet(Pet pet) {
     if (!hasFamily() || !family.hasPet()) {
       System.out.println("I don't have a pet");
       return false;
     }
-    if(this.getFamily().findPet(pet) == null) {
+    if (this.getFamily().findPet(pet) == null) {
       System.out.println("This is not my pet");
-      return  false;
-    }
-    else  return true;
+      return false;
+    } else return true;
   }
 
-  public void greetPet (Pet pet) {
-    if(isMyPet(pet)) {
+  public void greetPet(Pet pet) {
+    if (isMyPet(pet)) {
       System.out.printf("Hi %s%n", this.getFamily().findPet(pet).getNickname());
     }
-}
-
-public void describePet (Pet pet) {
-  if (!hasFamily() || !family.hasPet()) {
-    System.out.println("I don't have a pet");
-    return;
   }
-  String howTricky = this.getFamily().findPet(pet).getTrickLevel() > 50 ?  "very tricky" : "not very tricky";
-  System.out.printf("I have a %s, he is %d years old, and he is %s%n ",
-    this.getFamily().findPet(pet).getSpecies().getName().toLowerCase(),
-    this.getFamily().findPet(pet).getAge(), howTricky );
-}
+
+  public void describePet(Pet pet) {
+    if (!hasFamily() || !family.hasPet()) {
+      System.out.println("I don't have a pet");
+      return;
+    }
+    String howTricky = this.getFamily().findPet(pet).getTrickLevel() > 50 ? "very tricky" : "not very tricky";
+    System.out.printf("I have a %s, he is %d years old, and he is %s%n ",
+      this.getFamily().findPet(pet).getSpecies().getName().toLowerCase(),
+      this.getFamily().findPet(pet).getAge(), howTricky);
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -152,12 +154,12 @@ public void describePet (Pet pet) {
   @Override
   public String toString() {
     return String.format("{gender='%s', name='%s', surname='%s', birthDate=%s, iq=%d, schedule='%s'} %n ",
-    this.getClass().getSimpleName(), name, surname, dateOfBirthToString() ,iq, schedule);
+      this.getClass().getSimpleName(), name, surname, dateOfBirthToString(), iq, schedule);
   }
 
   @Override
   protected void finalize() throws Throwable {
-    System.out.println(this.toString());
+    System.out.println(this);
     super.finalize();
   }
 

@@ -28,66 +28,68 @@ public class Family {
 
   }
 
-  public void addChild (Human child) {
+  public void addChild(Human child) {
     this.children.add(child);
     child.setFamily(this);
   }
 
   public boolean deleteChild(int removeIndex) {
-    if(this.children.toArray().length == 0 || removeIndex > this.children.toArray().length -1 || removeIndex < 0) {
+    if (this.children.toArray().length == 0 || removeIndex > this.children.toArray().length - 1 || removeIndex < 0) {
       return false;
     }
     this.children.remove(removeIndex);
     return true;
   }
 
-  public boolean deleteChild (Human human) {
-   return  this.children.remove(human);
+  public boolean deleteChild(Human human) {
+    return this.children.remove(human);
   }
 
-  public int countFamily () {
-  System.out.printf("This family has 2 parents, and %d children %n" ,  this.children.size());
-  return this.children.size();
-}
-public void addPet (Pet newPet) {
+  public int countFamily() {
+    System.out.printf("This family has 2 parents, and %d children %n", this.children.size());
+    return this.children.size();
+  }
+
+  public void addPet(Pet newPet) {
     pet.add(newPet);
-}
+  }
 
-  public boolean hasPet () {
-  return !this.pet.isEmpty();
-}
+  public boolean hasPet() {
+    return !this.pet.isEmpty();
+  }
 
-  public Pet findPet (Pet pet) {
+  public Pet findPet(Pet pet) {
     return getPet().stream().filter(pet::equals).findAny().orElse(null);
   }
 
-public String toPrettyFormat () {
-  if(hasPet()) {
-    return String.format("Family: %n " +
-        "\s\s\s\s\s\sMother: %s" +
-        "\s\s\s\s\s\sFather: %s" +
-        "\s\s\s\s\s\sChildren: %n\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s%s" +
-        "\s\s\s\s\s\sPets: %n\s\s\s\s\s\s\s\s\s\s\s\s\s%s",
-      mother.toString(), father.toString(), childrenToPrettyFormat(), petsToPrettyFormat());
+  public String toPrettyFormat() {
+    if (hasPet()) {
+      return String.format("Family: %n " +
+          "\s\s\s\s\s\sMother: %s" +
+          "\s\s\s\s\s\sFather: %s" +
+          "\s\s\s\s\s\sChildren: %n\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s%s" +
+          "\s\s\s\s\s\sPets: %n\s\s\s\s\s\s\s\s\s\s\s\s\s%s",
+        mother.toString(), father.toString(), childrenToPrettyFormat(), petsToPrettyFormat());
+    }
+
+    return String.format("Family{%s, %s, %s} %n",
+      mother.toString(), father.toString(), childrenToPrettyFormat());
+
   }
 
-  return String.format("Family{%s, %s, %s} %n" ,
-    mother.toString(), father.toString(), childrenToPrettyFormat());
+  public String boyOrGirl(Human human) {
+    return (human instanceof Man ? "Boy" : "Girl");
+  }
 
-}
-
-public String boyOrGirl (Human human) {
-  return (human instanceof Man ? "Boy" : "Girl");
-}
-
-public String childrenToPrettyFormat () {
+  public String childrenToPrettyFormat() {
     if (!this.children.isEmpty()) {
-     String childsString = children.stream().map(child -> boyOrGirl(child) + ":" + child.toString()).collect(Collectors.joining("\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s"));
+      String childsString = children.stream().map(child -> boyOrGirl(child) + ":" + child.toString()).collect(Collectors.joining("\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s"));
       return childsString;
     }
     return "No children";
-}
-  public String petsToPrettyFormat () {
+  }
+
+  public String petsToPrettyFormat() {
     if (!this.pet.isEmpty()) {
       String petsString = pet.stream().map(pet -> pet.toString()).collect(Collectors.joining("\s\s\s\s\s\s\s\s\s\s\s\s\s"));
       return petsString;
@@ -109,23 +111,24 @@ public String childrenToPrettyFormat () {
   }
 
   @Override
-public String toString() {
-    if(hasPet()) {
+  public String toString() {
+    if (hasPet()) {
       return String.format("Family{%s, %s, %s, %s} %n",
         mother.toString(), father.toString(), children, pet.toString());
     }
 
-  return String.format("Family{%s, %s, %s} %n" ,
-    mother.toString(), father.toString(), children);
+    return String.format("Family{%s, %s, %s} %n",
+      mother.toString(), father.toString(), children);
 
 
-}
+  }
 
   @Override
   protected void finalize() throws Throwable {
-    System.out.println(this.toString());
+    System.out.println(this);
     super.finalize();
   }
+
   public Human getMother() {
     return mother;
   }

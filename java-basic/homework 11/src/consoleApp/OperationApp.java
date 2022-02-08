@@ -2,7 +2,7 @@ package consoleApp;
 
 public class OperationApp {
   String operationName;
-  Operation operation ;
+  Operation operation;
 
   public OperationApp(String operationName, Operation setterOperation) {
     this.operationName = operationName;

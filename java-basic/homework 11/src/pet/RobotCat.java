@@ -5,13 +5,13 @@ import java.util.HashSet;
 
 public class RobotCat extends Pet implements Foul {
 
-  public RobotCat(String nickname, int age, int trickLevel, HashSet <String> habits) {
-    super( nickname, age, trickLevel, habits);
+  public RobotCat(String nickname, int age, int trickLevel, HashSet<String> habits) {
+    super(nickname, age, trickLevel, habits);
 
   }
 
-  public RobotCat( String nickname, int age, int trickLevel) {
-    super( nickname, age, trickLevel);
+  public RobotCat(String nickname, int age, int trickLevel) {
+    super(nickname, age, trickLevel);
 
   }
 

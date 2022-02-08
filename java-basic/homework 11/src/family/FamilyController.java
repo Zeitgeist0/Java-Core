@@ -15,7 +15,11 @@ public class FamilyController {
     this.familyService = familyService;
   }
 
-  public  boolean familiesExist () {
+  public List<Family> getAllFamilies() {
+    return familyService.getAllFamilies();
+  }
+
+  public boolean familiesExist() {
     return familyService.familiesExist();
   }
 
@@ -23,7 +27,7 @@ public class FamilyController {
     familyService.displayFamilies(families);
   }
 
-  public  void displayAllFamilies() {
+  public void displayAllFamilies() {
     familyService.displayAllFamilies();
   }
 
@@ -32,46 +36,50 @@ public class FamilyController {
   }
 
   public List<Family> getFamiliesBiggerThan(int size) {
-   return familyService.getFamiliesBiggerThan(size);
+    return familyService.getFamiliesBiggerThan(size);
   }
 
   public List<Family> getFamiliesLessThan(int size) {
-   return  familyService.getFamiliesLessThan(size);
+    return familyService.getFamiliesLessThan(size);
   }
 
-  public long countFamiliesWithMemberNumber (int size) {
-  return familyService.countFamiliesWithMemberNumber(size);
+  public long countFamiliesWithMemberNumber(int size) {
+    return familyService.countFamiliesWithMemberNumber(size);
   }
 
-  public void createNewFamily (Human father, Human mother) {
-    familyService.createNewFamily(father,mother);
+  public void createNewFamily(Human father, Human mother) {
+    familyService.createNewFamily(father, mother);
   }
 
-  public void saveFamily (Family family) {
+  public void saveFamily(Family family) {
     familyService.saveFamily(family);
   }
 
-  public void deleteFamilyByIndex (int index) {
-    familyService.deleteFamilyByIndex(index);
+  public boolean deleteFamily(int index) {
+    return familyService.deleteFamily(index);
   }
 
-  public Family bornChild (Family family, String maleName, String femaleName) {
-  return  familyService.bornChild(family, maleName, femaleName);
+  public boolean deleteFamily(Family family) {
+    return familyService.deleteFamily(family);
   }
 
-  public Family adoptChild (Family family, Human human) {
-    return  familyService.adoptChild(family, human);
+  public Family bornChild(Family family, String maleName, String femaleName) {
+    return familyService.bornChild(family, maleName, femaleName);
   }
 
-  public Family bornChild (int index, String maleName, String femaleName) {
-    return  familyService.bornChild(index, maleName, femaleName);
+  public Family adoptChild(Family family, Human human) {
+    return familyService.adoptChild(family, human);
   }
 
-  public Family adoptChild (int index, Human human) {
-    return  familyService.adoptChild(index, human);
+  public Family bornChild(int index, String maleName, String femaleName) {
+    return familyService.bornChild(index, maleName, femaleName);
   }
 
-  public void deleteAllChildrenOlderThan (int age) {
+  public Family adoptChild(int index, Human human) {
+    return familyService.adoptChild(index, human);
+  }
+
+  public void deleteAllChildrenOlderThan(int age) {
     familyService.deleteAllChildrenOlderThan(age);
   }
 
@@ -79,15 +87,17 @@ public class FamilyController {
     return familyService.count();
   }
 
-  public Family getFamilyById (int id) {
+  public Family getFamilyById(int id) {
     return familyService.getFamilyById(id);
   }
 
-  public HashSet<Pet> getPets (int familyIndex) {
+  public HashSet<Pet> getPets(int familyIndex) {
     return familyService.getPets(familyIndex);
   }
 
-  public void addPet (int familyIndex , Pet pet) {
+  public void addPet(int familyIndex, Pet pet) {
     familyService.addPet(familyIndex, pet);
   }
+
+
 }

@@ -9,6 +9,7 @@ public class FamilyCollection implements FamilyDao {
 
   private FamilyCollection() {
   }
+
   public static FamilyCollection instanceOf() {
     return familyCollection;
   }
@@ -25,13 +26,14 @@ public class FamilyCollection implements FamilyDao {
 
   @Override
   public boolean deleteFamily(int index) {
-    if(families.toArray().length == 0 || index > families.toArray().length -1 || index < 0) {
+    if (families.toArray().length == 0 || index > families.toArray().length - 1 || index < 0) {
       return false;
     }
     families.remove(index);
     return true;
 
   }
+
   @Override
   public boolean deleteFamily(Family family) {
     return families.remove(family);
@@ -40,8 +42,8 @@ public class FamilyCollection implements FamilyDao {
   @Override
   public void saveFamily(Family family) {
     if (families.size() > 1 && families.contains(family)) {
-     int replaceIndex =  families.indexOf(family);
-     families.set(replaceIndex, family);
+      int replaceIndex = families.indexOf(family);
+      families.set(replaceIndex, family);
     } else {
       families.add(family);
     }

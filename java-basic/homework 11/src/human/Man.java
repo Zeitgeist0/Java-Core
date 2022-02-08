@@ -29,12 +29,14 @@ public final class Man extends Human {
   public Man(String name, String surname) {
     super(name, surname);
   }
-  public void swim () {
+
+  public void swim() {
     System.out.println("Glub glub, I should swim faster");
   }
+
   @Override
-  public void greetPet (Pet pet) {
-    if(isMyPet(pet)) {
+  public void greetPet(Pet pet) {
+    if (isMyPet(pet)) {
       System.out.printf("Hi %s, what a good boy! %n", this.getFamily().findPet(pet).getNickname());
     }
   }

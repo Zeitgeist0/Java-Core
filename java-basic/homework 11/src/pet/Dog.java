@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class Dog extends Pet implements Foul {
 
 
-  public Dog(String nickname, int age, int trickLevel, HashSet <String> habits) {
+  public Dog(String nickname, int age, int trickLevel, HashSet<String> habits) {
     super(nickname, age, trickLevel, habits);
 
   }
