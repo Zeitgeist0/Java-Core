@@ -2,6 +2,7 @@ package family;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FamilyCollection implements FamilyDao {
   private static final FamilyCollection familyCollection = new FamilyCollection();
@@ -39,9 +40,10 @@ public class FamilyCollection implements FamilyDao {
     return families.remove(family);
   }
 
+
   @Override
   public void saveFamily(Family family) {
-    if (families.size() > 1 && families.contains(family)) {
+    if (families.size() >= 1 && families.stream().anyMatch(family::equals)) {
       int replaceIndex = families.indexOf(family);
       families.set(replaceIndex, family);
     } else {

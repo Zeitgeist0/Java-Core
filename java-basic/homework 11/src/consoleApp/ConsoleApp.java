@@ -14,7 +14,7 @@ public class ConsoleApp {
   private final List<OperationApp> command;
   private final List<OperationApp> editFamilyCommand;
   private boolean isRunning = true;
-  private boolean returnToMainMenu = true;
+  private boolean returnToMainMenu = false;
 
   public ConsoleApp() {
     this.scanner = new Scanner(System.in);
@@ -91,7 +91,7 @@ public class ConsoleApp {
   }
 
   private void returnToMainMenu() {
-    returnToMainMenu = false;
+    returnToMainMenu = true;
   }
 
   private void fillWithTestData() {
@@ -128,7 +128,6 @@ public class ConsoleApp {
 
   private void printFamiliesBiggerThan() {
     System.out.print("Bigger than -> ");
-    familyController.getFamiliesLessThan(scanInteger());
     List<Family> familyList = familyController.getFamiliesBiggerThan(scanInteger());
     familyController.displayFamilies(familyList);
   }
@@ -188,6 +187,7 @@ public class ConsoleApp {
   }
 
   private void editFamilyByIndex() {
+    returnToMainMenu = false;
     while (!returnToMainMenu) {
       printCommand(editFamilyCommand);
       OperationApp operationApp = editFamilyCommand.get(scanInteger(1, editFamilyCommand.size()) - 1);

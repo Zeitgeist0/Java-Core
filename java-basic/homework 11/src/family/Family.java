@@ -102,12 +102,12 @@ public class Family {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Family family = (Family) o;
-    return mother.equals(family.mother) && father.equals(family.father);
+    return mother.equals(family.mother) && father.equals(family.father) && Objects.equals(children, family.children) && Objects.equals(pet, family.pet);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mother, father);
+    return Objects.hash(mother, father, children, pet);
   }
 
   @Override

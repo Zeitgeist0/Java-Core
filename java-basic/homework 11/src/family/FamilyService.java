@@ -25,9 +25,12 @@ public class FamilyService {
     if (!familiesExist()) {
       System.out.println("No families to display");
     }
-    families.forEach(family -> {
-      System.out.printf("Family index %d :%n %s%n", families.indexOf(family), family.toPrettyFormat());
-    });
+//    families.forEach(family -> {
+//      System.out.printf("Family index %d :%n %s%n", families.indexOf(family), family.toPrettyFormat());
+//    });
+    for (int i = 0; i < families.size(); i++) {
+      System.out.printf("Family index %d :%n %s%n", i, families.get(i).toPrettyFormat());
+    }
   }
 
   public void displayAllFamilies() {
@@ -44,14 +47,11 @@ public class FamilyService {
 
   public List<Family> getFamiliesBiggerThan(int size) {
     if (size < 2) {
-      System.out.println("All families  have at least 2 members");
-      displayAllFamilies();
+      System.out.println("All families  have at least 2 members5");
       return familyDao.getAllFamilies();
     } else {
-      List<Family> biggerFamilies = familyDao.getAllFamilies().stream().
+      return familyDao.getAllFamilies().stream().
         filter(family -> family.getChildren().size() > (size - 2)).collect(Collectors.toList());
-      displayFamilies(biggerFamilies);
-      return biggerFamilies;
     }
 
   }
@@ -61,10 +61,8 @@ public class FamilyService {
       System.out.println("All families  have at least 2 members");
       return familyDao.getAllFamilies();
     } else {
-      List<Family> smallerFamilies = familyDao.getAllFamilies().stream().
+      return familyDao.getAllFamilies().stream().
         filter(family -> family.getChildren().size() < (size - 2)).collect(Collectors.toList());
-      displayFamilies(smallerFamilies);
-      return smallerFamilies;
     }
   }
 
@@ -80,7 +78,7 @@ public class FamilyService {
 
   public void createNewFamily(Human father, Human mother) {
     Family family = new Family(mother, father);
-    familyDao.getAllFamilies().add(family);
+    familyDao.saveFamily(family);
   }
 
   public void saveFamily(Family family) {

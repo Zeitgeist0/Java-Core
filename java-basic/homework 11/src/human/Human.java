@@ -110,6 +110,19 @@ public class Human {
     }
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Human human = (Human) o;
+    return birthDate == human.birthDate && iq == human.iq && name.equals(human.name) && surname.equals(human.surname) && Objects.equals(schedule, human.schedule);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, surname, birthDate, iq, schedule);
+  }
+
   public boolean isMyPet(Pet pet) {
     if (!hasFamily() || !family.hasPet()) {
       System.out.println("I don't have a pet");
@@ -136,19 +149,6 @@ public class Human {
     System.out.printf("I have a %s, he is %d years old, and he is %s%n ",
       this.getFamily().findPet(pet).getSpecies().getName().toLowerCase(),
       this.getFamily().findPet(pet).getAge(), howTricky);
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Human human = (Human) o;
-    return birthDate == human.birthDate && iq == human.iq && name.equals(human.name) && surname.equals(human.surname) && Objects.equals(family, human.family) && Objects.equals(schedule, human.schedule);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, surname, birthDate, iq, family, schedule);
   }
 
   @Override
